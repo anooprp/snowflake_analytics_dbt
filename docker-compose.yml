@@ -3,7 +3,7 @@ version: "3.8"
 services:
   dbt:
     image: ghcr.io/dbt-labs/dbt-snowflake:1.6.5
-    container_name: dbt_gotphoto
+    container_name: snowflake_analytics_dbt
     environment:
       - SNOWFLAKE_PASSWORD=${SNOWFLAKE_PASSWORD}
     volumes:

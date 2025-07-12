@@ -1,4 +1,4 @@
-dbt-snowflake:
+snowflake_analytics:
   target: dev
   outputs:
     dev:
@@ -7,7 +7,7 @@ dbt-snowflake:
       user: anoopr
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role: ACCOUNTADMIN
-      database: GOT_PHOTO
+      database: DBT_ANALYTICS
       warehouse: COMPUTE_WH
       schema: CORE
       threads: 4
