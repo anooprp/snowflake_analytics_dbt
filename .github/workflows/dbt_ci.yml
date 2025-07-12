@@ -39,7 +39,7 @@ jobs:
       run: dbt deps
 
     - name: Run dbt run
-      run: dbt run --profiles-dir ~/.dbt --select test
+      run: dbt run --profiles-dir ~/.dbt --profile test_profile --select test
 
     - name: Run dbt test
-      run: dbt test --profiles-dir ~/.dbt --select test
+      run: dbt test --profiles-dir ~/.dbt --profile test_profile --select test
