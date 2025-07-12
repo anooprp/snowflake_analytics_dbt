@@ -21,7 +21,7 @@ jobs:
 
     - name: Install dbt and dependencies
       run: |
-        pip install dbt-core dbt-snowflake dbt-utils
+        pip install dbt-core dbt-snowflake
 
     - name: Configure dbt profiles
       run: |
@@ -31,7 +31,7 @@ jobs:
         DBT_PROFILES_YML: ${{ secrets.DBT_PROFILES_YML }}
         SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
-    - name: Run dbt deps
+    - name: Install dbt packages
       run: dbt deps
 
     - name: Run dbt seed
