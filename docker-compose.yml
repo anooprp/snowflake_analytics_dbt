@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-snowflake:1.6.5
+    container_name: dbt_gotphoto
+    environment:
+      - SNOWFLAKE_PASSWORD=${SNOWFLAKE_PASSWORD}
+    volumes:
+      - ./:/usr/app
+      - ./profiles:/root/.dbt
+    working_dir: /usr/app
+    entrypoint: ["tail", "-f", "/dev/null"]

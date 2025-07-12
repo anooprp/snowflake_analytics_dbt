@@ -1,0 +1,14 @@
+gotphoto_tpch_case_study:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: wf35605.europe-west3.gcp
+      user: anoopr
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      database: GOT_PHOTO
+      warehouse: COMPUTE_WH
+      schema: CORE
+      threads: 4
+      client_session_keep_alive: False

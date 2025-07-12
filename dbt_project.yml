@@ -1,0 +1,23 @@
+name: 'gotphoto_tpch_case_study'
+version: '1.0'
+config-version: 2
+
+profile: 'gotphoto_tpch_case_study'
+
+model-paths:
+  - models/raw/tpch
+  - models/staging/tpch
+  - models/intermediate/tpch
+  - models/marts/core
+  - models/tests
+
+models:
+  gotphoto_tpch_case_study:
+    raw:
+      +schema: raw
+    staging:
+      +schema: stg  # or leave this line out to use default
+    intermediate:
+      +schema: int  # or leave this line out to use default
+    marts:
+      +schema: core
