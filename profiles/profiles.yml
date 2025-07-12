@@ -12,3 +12,18 @@ snowflake_analytics:
       schema: CORE
       threads: 4
       client_session_keep_alive: False
+
+test_profile:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: iv50318.europe-west3.gcp
+      user: neodeja
+      password: "{{ env_var('SNOWFLAKE_DEV_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      database: TEST_DB
+      warehouse: COMPUTE_WH
+      schema: TEST_SCHEMA
+      threads: 4
+      client_session_keep_alive: False

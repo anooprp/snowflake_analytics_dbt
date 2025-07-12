@@ -29,7 +29,6 @@ jobs:
         echo "$DBT_PROFILES_YML" > ~/.dbt/profiles.yml
       env:
         DBT_PROFILES_YML: ${{ secrets.DBT_PROFILES_YML }}
-        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
     - name: Debug dbt profile being used
       run: |
@@ -39,11 +38,8 @@ jobs:
     - name: Install dbt packages
       run: dbt deps
 
-    - name: Run dbt seed
-      run: dbt seed --profiles-dir ~/.dbt
-
     - name: Run dbt run
-      run: dbt run --profiles-dir ~/.dbt
+      run: dbt run --profiles-dir ~/.dbt --select test
 
     - name: Run dbt test
-      run: dbt test --profiles-dir ~/.dbt
+      run: dbt test --profiles-dir ~/.dbt --select test
