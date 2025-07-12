@@ -31,6 +31,11 @@ jobs:
         DBT_PROFILES_YML: ${{ secrets.DBT_PROFILES_YML }}
         SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
+    - name: Debug dbt profile being used
+      run: |
+        echo "Active profile contents:"
+        cat ~/.dbt/profiles.yml
+
     - name: Install dbt packages
       run: dbt deps
 
