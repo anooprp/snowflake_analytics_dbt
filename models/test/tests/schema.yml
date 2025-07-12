@@ -1,0 +1,35 @@
+sources:
+  - name: raw
+    tables:
+      - name: test_customer
+        columns:
+          - name: c_custkey
+            tests:
+              - dbt_expectations.expect_column_values_to_not_be_null
+
+      - name: test_orders
+        loaded_at_field: o_orderdate  # ✅ Apply only here
+        freshness:
+          warn_after: { count: 1, period: day }
+          error_after: { count: 2, period: day }
+        columns:
+          - name: o_totalprice
+            tests:
+              - dbt_utils.expression_is_true:
+                  expression: ">= 0"
+
+      - name: test_lineitem
+        columns:
+          - name: l_discount
+            tests:
+              - dbt_utils.accepted_range:
+                  min_value: 0
+                  max_value: 1
+
+models:
+  - name: test_customer_order_summary
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [customer_id]
+      - not_null:
+          column_name: total_orders
