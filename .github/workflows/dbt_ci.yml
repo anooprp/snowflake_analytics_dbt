@@ -1,0 +1,44 @@
+name: dbt CI Pipeline
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  dbt-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dbt and dependencies
+      run: |
+        pip install dbt-core dbt-snowflake dbt-utils
+
+    - name: Configure dbt profiles
+      run: |
+        mkdir -p ~/.dbt
+        echo "$DBT_PROFILES_YML" > ~/.dbt/profiles.yml
+      env:
+        DBT_PROFILES_YML: ${{ secrets.DBT_PROFILES_YML }}
+        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+
+    - name: Run dbt deps
+      run: dbt deps
+
+    - name: Run dbt seed
+      run: dbt seed --profiles-dir ~/.dbt
+
+    - name: Run dbt run
+      run: dbt run --profiles-dir ~/.dbt
+
+    - name: Run dbt test
+      run: dbt test --profiles-dir ~/.dbt
