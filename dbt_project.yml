@@ -1,23 +1,20 @@
-name: 'dbt-snowflake'
+name: 'snowflake_analytics'
 version: '1.0'
 config-version: 2
 
-profile: 'dbt-snowflake'
+profile: 'snowflake_analytics'
 
 model-paths:
-  - models/raw/tpch
-  - models/staging/tpch
-  - models/intermediate/tpch
-  - models/marts/core
-  - models/tests
+  - models
 
 models:
-  dbt-snowflake:
-    raw:
-      +schema: raw
-    staging:
-      +schema: stg  # or leave this line out to use default
-    intermediate:
-      +schema: int  # or leave this line out to use default
-    marts:
-      +schema: core
+  snowflake_analytics:
+    sfa:
+      raw:
+        +schema: raw
+      staging:
+        +schema: stg
+      intermediate:
+        +schema: int
+      marts:
+        +schema: core
