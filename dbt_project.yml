@@ -1,8 +1,8 @@
-name: 'gotphoto_tpch_case_study'
+name: 'dbt-snowflake'
 version: '1.0'
 config-version: 2
 
-profile: 'gotphoto_tpch_case_study'
+profile: 'dbt-snowflake'
 
 model-paths:
   - models/raw/tpch
@@ -12,7 +12,7 @@ model-paths:
   - models/tests
 
 models:
-  gotphoto_tpch_case_study:
+  dbt-snowflake:
     raw:
       +schema: raw
     staging:

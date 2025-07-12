@@ -1,4 +1,4 @@
-gotphoto_tpch_case_study:
+dbt-snowflake:
   target: dev
   outputs:
     dev:
