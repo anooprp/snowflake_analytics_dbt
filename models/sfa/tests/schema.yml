@@ -8,7 +8,7 @@ sources:
               - dbt_expectations.expect_column_values_to_not_be_null
 
       - name: orders
-        loaded_at_field: o_orderdate  # ✅ Apply only here
+        loaded_at_field: o_orderdate
         freshness:
           warn_after: { count: 1, period: day }
           error_after: { count: 2, period: day }
@@ -17,6 +17,10 @@ sources:
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
+          - name: o_orderstatus
+            tests:
+              - dbt_expectations.expect_column_values_to_be_in_set:
+                  value_set: [ 'F', 'O', 'P' ]
 
       - name: lineitem
         columns:
@@ -36,4 +40,6 @@ models:
 
   - name: revenue_per_customer
     tests:
-      - test_revenue_customer_relationship
+      - revenue_customer_relationship
+      - row_count:
+          min_rows: 50000

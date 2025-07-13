@@ -26,3 +26,7 @@ models:
         +schema: int
       marts:
         +schema: core
+
+dispatch:
+  - macro_namespace: dbt
+    search_order: ['snowflake_analytics', 'dbt']
