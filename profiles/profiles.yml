@@ -1,20 +1,5 @@
 snowflake_analytics:
-  target: dev
-  outputs:
-    dev:
-      type: snowflake
-      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
-      role: "{{ env_var('SNOWFLAKE_ROLE') }}"
-      database: DBT_ANALYTICS
-      warehouse: COMPUTE_WH
-      schema: CORE
-      threads: 4
-      client_session_keep_alive: False
-
-test_profile:
-  target: dev
+  target: dev     # <-- default target when none specified
   outputs:
     dev:
       type: snowflake
@@ -25,5 +10,17 @@ test_profile:
       database: TEST_DB
       warehouse: COMPUTE_WH
       schema: TEST_SCHEMA
+      threads: 4
+      client_session_keep_alive: False
+
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE') }}"
+      database: DBT_ANALYTICS
+      warehouse: COMPUTE_WH
+      schema: CORE
       threads: 4
       client_session_keep_alive: False
