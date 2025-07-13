@@ -6,3 +6,5 @@ dbt_packages/
 # Ignore Python cache files
 __pycache__/
 *.py[cod]
+logs/*
+metabase-data/*
