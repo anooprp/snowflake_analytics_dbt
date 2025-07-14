@@ -97,3 +97,19 @@ AIRFLOW_CONN_SNOWFLAKE_DEV_CLEANUP='snowflake://user:password@account/TEST_DB/TE
 
 ---
 
+## 📖 Serving dbt Documentation
+
+After running dbt_pipeline_prod dag, the documentation is saved in the `/usr/app/target` directory.
+
+You can serve the generated docs using a lightweight static file server:
+
+### Using Python’s built-in HTTP server login to dbt server
+
+
+
+```bash
+docker exec -it snowflake_analytics_dbt bash
+
+cd /usr/app/target
+python3 -m http.server 8081
+This will serve your dbt docs at http://localhost:8081.
